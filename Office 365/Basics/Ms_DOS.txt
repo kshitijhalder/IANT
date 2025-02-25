@@ -1,0 +1,107 @@
+                                    MS DOS
+                            (Disk Operating System)
+
+About MS DOS :-
+. MS DOS is one type of DOS based Computer Operating System invented by Microsoft in 1981.
+. It is virus free Computer Operating System used for command based operations.
+
+DOS Commands :-
+
+1. Time :- To show and chang the system time.
+           To set your time in 23 hours format 
+           Eg. C:\>time 23:59:59
+
+2. Date :- To show and change the system date.
+           To set your date in mm-dd-yy format
+           Eg. C:\>date 12-31-99
+
+3. Version :- To show the version of your MS DOS.
+              Eg. C:\>ver
+
+4. Volume :- To show the volume label of your disk.
+             Eg. C:\>vol & D:\>vol
+
+5. Clear screen :- To clear the DOS screen.
+                    Eg. C:\>cls
+
+6. Changing Drive :- To change to particular drive.
+                     Eg. C:\>D: to go to D drive.
+                     Syntax : C:\>(Drive_letter):
+
+7. Make Directory :- To creaate a new directory.
+                     Eg. C:\>md newdir
+                     Syntax : C:\>md (Directory_name)
+                
+8. View Directory :- To view the list of files and directories in the current directory.
+                     Eg. C:\>dir
+
+9. Change Directory :- To change to particular directory.
+                       Eg. C:\>cd newdir    
+                       Syntax : C:\>cd (Directory_name)
+
+10. Change Directory backwars :- To change to previous directory.
+                                 Eg. C:\>cd..
+                                 To change 2 directories backwars
+                                 Eg. C:\>cd..\..
+                                 To change to root directory
+                                 Eg. C:\>cd\
+
+11. Remove Directory :- To remove a directory.
+                        Eg. C:\>rd newdir
+                        Syntax : C:\>rd (Directory_name)
+
+12. Remove Directory forcibly :- To remove a directory forcibly with files.
+                                   Eg. C:\>rd /s /q newdir
+                                   Syntax : C:\>rd /s /q (Directory_name)
+
+13. Tree :- To view the tree structure of the current directory.
+            Eg. C:\>tree
+
+14. Create a new file :- To create a new file.
+                         Eg. C:\>copy con newfile.txt
+                         Syntax : C:\>copy con (File_name)
+
+15. View a file :- To view the contents of a file.
+                   Eg. C:\>type newfile.txt 
+                   Syntax : C:\>type (File_name)
+
+16. Edit a file :- To edit the contents of a file.
+                   Eg. C:\>edit newfile.txt
+                   Syntax : C:\>edit (File_name)
+                   Note : To save the file press F2 and to exit press F3.
+
+17. Copy a file :- To copy a file to another directory.
+                   Eg. C:\>copy newfile.txt D:\
+                   Syntax : C:\>copy (File_name) (Destination_directory)
+
+18. Delete a file :- To delete a file.
+                     Eg. C:\>del newfile.txt
+                     Syntax : C:\>del (File_name)
+
+19. Change color scheme :- To change DOS text & background color.
+                           Color with color list
+                           Eg. C:\>color 01 (Black background & Blue text)
+                           0 = Black       8 = Gray
+                           1 = Blue        9 = Light Blue
+                           2 = Green       A = Light Green
+                           3 = Aqua        B = Light Aqua
+                           4 = Red         C = Light Red
+                           5 = Purple      D = Light Purple
+                           6 = Yellow      E = Light Yellow
+                           7 = White       F = Bright White
+                           Syntax : C:\>color (Background_color)(Text_color)
+
+20. Change color :- To change DOS text & background color.
+                    Eg. C:\>color fc 
+                    Reset with C:\>color 
+
+21. System off/ lock/ restart :- To shutdown, lock or restart the system.
+                                 Log out                    C:\>showdown -l
+                                 Shutdown                   C:\>showdown -s
+                                 5 minutes shutdown         C:\>showdown -s -t 300
+                                 Restart                    C:\>showdown -r
+                                 5 minutes restart          C:\>showdown -r -t 300
+                                 Cancelling Shutdown        C:\>showdown -a
+
+22. Exiting DOS :- To exit DOS.
+                    Eg. C:\>exit
