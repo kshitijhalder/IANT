@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Robot Animation </title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+                background: linear-gradient(#141e30, #243b55);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            /* Robot */
+            .robot {
+                animation: move 4s linear infinite;
+            }
+
+            .head {
+                width: 90px;
+                height: 60px;
+                background: #cfd8dc;
+                border-radius: 10px;
+                position: relative;
+                margin: auto;
+            }
+
+            .eye {
+                width: 10px;
+                height: 10px;
+                background: black;
+                border-radius: 50%;
+                position: absolute;
+                top: 22px;
+                animation: blink 4s infinite;
+            }
+
+            .eye.left {
+                left: 22px;
+            }
+
+            .eye.right {
+                 right: 22px;
+             }
+            
+            .body {
+                width: 110px;
+                height: 130px;
+                background: #90a4ae;
+                border-radius: 10px;
+                margin: 8px auto;
+            }
+
+            .legs {
+                display: flex;
+                justify-content: space-between;
+                width: 90px;
+                margin: auto;
+            }
+
+            .leg {
+                width: 18px;
+                height: 70px;
+                background: #607d8b;
+                border-radius: 10px;
+                transform-origin: top;
+            }
+
+            .leg.left {
+                animation: walkLeft 0.8s infinite alternate;
+            }
+
+            .leg.right {
+                animation: walkRight 0.8s infinite alternate;
+            }
+
+            @keyframes move {
+                0% {
+                    transform: translateX(-200px);
+                }
+                100% {
+                    transform: translateX(200px);
+                }
+            }
+            @keyframes walkLeft {
+                from {
+                    transform: rotate(20deg);
+                }
+                to {
+                    transform: rotate(-20deg);
+                }
+            }
+
+            @keyframes walkRight {
+                from {
+                    transform: rotate(-20deg);
+                }
+                to {
+                    transform: rotate(20deg);
+                }
+            }
+
+            @keyframes blink {
+                0%, 95%, 100% {
+                    height: 10px;
+                }
+                96%, 99% {
+                    height: 2px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="robot">
+            <div class="head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+            </div>
+            <div class="body"> </div>
+            <div class="legs">
+                <div class="leg left"></div>
+                <div class="leg right"></div>
+            </div>
+        </div>
+    </body>
+</html>

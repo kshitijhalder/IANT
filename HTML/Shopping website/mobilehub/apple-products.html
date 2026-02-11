@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Products - MobileHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">📱 MobileHub</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Apple Products</h1>
+        <p>Premium iPhones with cutting-edge technology</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="featured-products">
+        <div class="product-grid">
+            <!-- iPhone 15 Pro -->
+            <div class="product-card">
+                <div class="product-image-small">
+                    <img src="/Users/kshitijhalder/Downloads/iphone15.png" alt="iPhone 15 Pro" class="product-thumbnail">
+                </div>
+                <h3>iPhone 15 Pro</h3>
+                <p class="brand">Apple</p>
+                <p class="price">₹79,999</p>
+                <p class="rating">⭐⭐⭐⭐⭐ (245)</p>
+                <p class="product-desc">Latest iPhone with advanced features</p>
+                <a href="iphone-15-pro.html" class="btn btn-secondary">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MobileHub</h3>
+                <p>Your trusted online destination for premium mobile phones and accessories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 Email: support@mobilehub.com</p>
+                <p>📞 Phone: +91-8765-432-100</p>
+                <p>📍 Address: Ahmedabad, Gujarat, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MobileHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .page-header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .featured-products {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: rgba(38, 40, 40, 1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-image-small {
+            width: 100%;
+            height: 900px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 15px;
+        }
+
+        .btn {
+            margin: 15px;
+        }
+    </style>
+
+</body>
+</html>

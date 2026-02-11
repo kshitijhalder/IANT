@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>  Set Property  </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#btn").click(function(){
+                    $("p").css({"background-color":"lightblue"});
+                    $("h2").css({"background-color":"lightgreen","font-size":"30px"});
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h2>This is a heading</h2>
+        <p>This is a paragraph</p>
+        <p>This is another paragraph</p>
+        <p>This is yet another paragraph</p>
+        <button id="btn">Click Me</button>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form </title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .note {
+            margin-top: 20px;
+            text-align: justify;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .form-row {
+            margin: 10px 0;
+        }
+
+        label {
+            display: inline-block;
+            min-width: 180px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="number"] {
+            width: 60%;
+            border: none;
+            border-bottom: 1px solid #000;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .small-input {
+            width: 120px;
+        }
+
+        .smaller-input {
+            width: 40px;
+        }
+
+        .subjects input {
+            width: 30%;
+            margin-bottom: 8px;
+        }
+
+        ul {
+            margin-top: 15px;
+        }
+
+        .signature {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .signature span {
+            display: inline-block;
+            width: 40%;
+            border-bottom: 1px dotted #000;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+
+        .sex-input {
+            width: 80px;
+        }
+
+        /* REMOVED .dob-sex-row and .dob-line */
+
+        /* Added styles for alignment fix */
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin: 14px 0;
+        }
+
+        .form-row label {
+            min-width: 230px;
+        }
+
+        .line-input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #000;
+            outline: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .sex-label {
+            min-width: 90px;
+            margin-left: 10px;
+        }
+
+        .sex-input {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+            <legend align="center">
+                    <h2>Anand Niketan School</h2>
+            </legend>
+        <h3>Registration Form</h3>
+
+        <p class="bold">Dear Parent</p>
+
+        <p class="note">
+            For CBSE registration of G11, kindly fill the details of your ward.
+            Ensure correct D.O.B and spelling of student’s name, father’s name
+            and mother’s name as defined in the marksheet of Grade X.
+            <span class="bold">“NO modifications are permitted after registration.”</span>
+        </p>
+
+        <p class="bold">Fill this form in Block Letters Only</p>
+
+        <form>
+            <div class="form-row">
+                <label>Student’s Name :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Father’s Name :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Mother’s Name :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Date of Birth :</label>
+                <input type="text" class="line-input" placeholder="DD / MM / YYYY">
+                <label class="sex-label">SEX (M/F) :</label>
+                <input type="text" class="sex-input line-input">
+            </div>
+
+            <div class="form-row">
+                <label>Student Aadhar Card No. :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Category (GEN/ST/SC/OBC) :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Annual Income :</label>
+                <input type="text" class="line-input">
+                <label class="sex-label">Minority (Yes/No) :</label>
+                <input type="text" class="sex-input line-input">
+            </div>
+
+            <div class="form-row">
+                <label>E-mail :</label>
+                <input type="email">
+            </div>
+
+            <div class="form-row">
+                <label>Only Child :</label>
+                <input type="text">
+            </div>
+
+            <div class="form-row">
+                <label>Mob. No. :</label>
+                <input type="text">
+            </div>
+
+            <p class="bold">Subjects :</p>
+
+            <div class="subjects">
+                1. <input type="text">
+                2. <input type="text">
+                3. <input type="text"><br>
+                4. <input type="text">
+                5. <input type="text">
+                6. <input type="text">
+            </div>
+
+            <ul>
+                <li>
+                    04 latest passport size colour <b>photographs in sports uniform</b>
+                    (white background, Name (in capital letters) & Date of clicking photograph written on it)
+                    and Student’s Aadhar card photocopy has to be submitted.
+                </li>
+                <li>
+                    Registration/LOC fees will be charged according to the notification by CBSE
+                    as and when school receives it.
+                </li>
+            </ul>
+
+            <p>You are requested to submit this form by <b>15th July’25</b>.</p>
+
+            <div class="signature">
+                <span>Parent’s Signature</span>
+                <span>Student’s Signature</span>
+            </div>
+        </form>    
+    </fieldset>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsung Products - MobileHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">📱 MobileHub</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Samsung Products</h1>
+        <p>Innovative Galaxy series smartphones</p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="featured-products">
+        <div class="product-grid">
+            <!-- Samsung Galaxy S24 -->
+            <div class="product-card">
+                <div class="product-image-small">
+                    <img src="https://images.unsplash.com/photo-1610945415295-d9bbf7e0b254?w=300&h=300&fit=crop" alt="Samsung Galaxy S24" class="product-thumbnail">
+                </div>
+                <h3>Samsung Galaxy S24</h3>
+                <p class="brand">Samsung</p>
+                <p class="price">₹64,999</p>
+                <p class="rating">⭐⭐⭐⭐⭐ (189)</p>
+                <p class="product-desc">Flagship Samsung smartphone</p>
+                <a href="samsung-galaxy-s24.html" class="btn btn-secondary">View Details</a>
+            </div>
+
+            <!-- Samsung Galaxy A15 -->
+            <div class="product-card">
+                <div class="product-image-small">
+                    <img src="https://images.unsplash.com/photo-1551817601-d8b8d27c86da?w=300&h=300&fit=crop" alt="Samsung Galaxy A15" class="product-thumbnail">
+                </div>
+                <h3>Samsung Galaxy A15</h3>
+                <p class="brand">Samsung</p>
+                <p class="price">₹24,999</p>
+                <p class="rating">⭐⭐⭐⭐ (198)</p>
+                <p class="product-desc">Budget-friendly smartphone</p>
+                <a href="samsung-galaxy-a15.html" class="btn btn-secondary">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MobileHub</h3>
+                <p>Your trusted online destination for premium mobile phones and accessories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 Email: support@mobilehub.com</p>
+                <p>📞 Phone: +91-8765-432-100</p>
+                <p>📍 Address: Ahmedabad, Gujarat, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MobileHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .page-header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .featured-products {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .product-image-small {
+            width: 100%;
+            height: 180px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card h3 {
+            margin: 15px;
+        }
+
+        .btn {
+            margin: 15px;
+        }
+    </style>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Solar System</title>
+        <style>
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background: black;
+            }
+
+            .universe {
+                position: relative;
+                width: 500px;
+                height: 500px;
+            }
+
+            .sun {
+                position:absolute;
+                top: 50%;
+                left: 50%;
+                width: 60px; 
+                height: 60px;
+                background: yellow;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+                box-shadow: 0 0 40px orange;
+            }
+
+            .orbit {
+                position: absolute;
+                top: 50%;left: 50%;
+                border: 1px dashed rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform-origin: center;
+                animation: spin linear infinite;
+            }
+
+            .planet {
+                position: absolute;
+                top: 50%; left: 100%;
+                width: 20px; height: 20px;
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .mercury { width: 120px; height: 120px; animation-duration: 5s;}
+            .venus { width: 180px; height: 180px; animation-duration: 8s;}
+            .earth { width: 240px; height: 240px; animation-duration: 12s;}
+            .mars { width: 300px; height: 300px; animation-duration: 15s;}
+            .jupiter { width: 360px; height: 360px; animation-duration: 20s;}
+            .saturn { width: 420px; height: 420px; animation-duration: 25s;}
+            .uranus { width: 480px; height: 480px; animation-duration: 30s;}
+            .neptune { width: 540px; height: 540px; animation-duration: 35s;}
+
+            .mercury .planet { background: gray; }
+            .venus .planet { background: orange; }
+            .earth .planet { background: blue; }
+            .mars .planet { background: red; }
+            .jupiter .planet { background: yellow; }
+            .saturn .planet { background: green; }
+            .uranus .planet { background: purple; }
+            .neptune .planet { background: violet; }
+
+            @keyframes spin {
+                from { transform: translate(-50%, -50%); rotate: (0deg); }
+                to {transform: translate(-50%, -50%) rotate(360deg);}
+            }
+
+        
+        </style>
+    </head>
+    <body>
+        <div class="universe">
+            <div class="sun"></div> 
+            <div class="orbit mercury"><div class="planet"></div></div>
+            <div class="orbit venus"><div class="planet"></div></div>
+            <div class="orbit earth"><div class="planet"></div></div>
+            <div class="orbit mars"><div class="planet"></div></div>
+            <div class="orbit jupiter"><div class="planet"></div></div>
+            <div class="orbit saturn"><div class="planet"></div></div>
+            <div class="orbit uranus"><div class="planet"></div></div>
+            <div class="orbit neptune"><div class="planet"></div></div>
+        </div>
+    </body>
+</html>

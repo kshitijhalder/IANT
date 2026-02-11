@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HTML Forms</title>
+</head>
+<body>
+    <form method="post" action="Sample.html" oninput="res.value=parsInt(z1.value)+parsInt(z2.value)+parsInt(z3.value)">
+        <fieldset>
+            <legend>
+                Personal Details
+            </legend>
+        
+        <br><br>
+        <label for="fnm">First Name: </label>
+        <input type="text" id="fnm" name="fnm">
+        <br>
+        Middle Name:<input type="text" name="mnm"> 
+        <br><br>
+        Last Name:<input type="text" name="lnm" > 
+        <br><br>
+        <input type="range" name="z1" value="0"/> + <input type="number" name="z2" value="30"/> + <input type="number" name="z3" value="60"/>
+        <br>
+        Output range is: <output name="res"></output>
+        <br>
+        Qualification: <input type="checkbox" name="c1">HSC
+        <input type="checkbox" name="c2"> Bsc
+        <input type="checkbox" name="c3"> Msc
+        <br>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <br><br>
+        Date of birth :
+        <input type="date"> 
+        <br><br>
+        <input type="datetime-local">
+        <br>
+        Email: <input type="email">
+        <br>
+        Range: <input type="range" id="r" min="1" max="10"> (min=0 max=10)
+        <br> 
+        <input type="image" id="i"/>Image
+        <br>
+        File: <input type="file" id="f"/>
+        <br>
+        Address: <textarea rows="10" columns="50">Enter URL: </textarea>
+        <br>
+        <select name="work" >
+            <optgroup label="security"> 
+                <option>Select valid field</option>  
+                <option>Computer security</option>
+                <option> System security</option>
+                <option> Cyber security</option>
+            </optgroup>
+            <optgroup label="development"> 
+                <option>software development</option>
+                <option> Web development</option>
+                <option> Game development</option>
+            </optgroup>
+        </select>
+        <br>
+        <input list="games" name="GM">
+            <datalist id="games">
+                <option>Simulator </option>
+                <option>Action </option>
+                <option>Mystery </option>
+                <option>fighting </option>
+            </datalist>
+            <br><br>
+        <keygen name="BH">    </keygen>
+        <br><br>
+        <button type="submit">Submit</button>
+        <button type="reset">Cancel</button>
+        </fieldset>
+
+    </form>
+    
+</body>
+</html>

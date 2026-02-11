@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/kshitijhalder/Desktop/Workstation/IANT",
-      "program": "/Users/kshitijhalder/Desktop/Workstation/IANT/build/Debug/outDebug"
+      "cwd": "/Users/kshitijhalder/Desktop/Workstation/IANT/C++/Chp 4",
+      "program": "/Users/kshitijhalder/Desktop/Workstation/IANT/C++/Chp 4/build/Debug/outDebug"
     }
   ]
 }

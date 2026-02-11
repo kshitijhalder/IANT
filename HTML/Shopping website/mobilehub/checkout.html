@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MobileHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">📱 MobileHub</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html" class="login-link">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Checkout</h1>
+        <p>Complete your purchase securely</p>
+    </section>
+
+    <div class="checkout-container">
+        <!-- Left Section: Delivery and Payment Details -->
+        <div class="left-section">
+            <h2>Delivery Details</h2>
+            <form>
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="Enter First Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Enter Last Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone No.</label>
+                    <input type="tel" id="phone" placeholder="Enter Phone No.">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address Line</label>
+                    <input type="text" id="address" placeholder="Enter Address Line">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="Enter City">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" placeholder="Enter State">
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Zip Code</label>
+                    <input type="text" id="zip" placeholder="Enter Zip Code">
+                </div>
+
+                <!-- Payment Section -->
+                <div class="payment-section">
+                    <h2>Payment</h2>
+                    
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <input type="radio" id="card" name="payment" checked>
+                            <label for="card">
+                                <img src="https://readymadeui.com/images/visa.webp" alt="Visa">
+                                <img src="https://readymadeui.com/images/american-express.webp" alt="Amex">
+                                <img src="https://readymadeui.com/images/master.webp" alt="Mastercard">
+                            </label>
+                        </div>
+
+                        <div class="payment-option">
+                            <input type="radio" id="paypal" name="payment">
+                            <label for="paypal">
+                                <img src="https://readymadeui.com/images/paypal.webp" alt="PayPal" class="paypal-img">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardholder">Cardholder's Name</label>
+                        <input type="text" id="cardholder" placeholder="Enter Cardholder's Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="Enter Card Number">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry</label>
+                            <input type="text" id="expiry" placeholder="Enter EXP.">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="Enter CVV">
+                        </div>
+                    </div>
+
+                    <div class="buttons-container">
+                        <button type="button" class="btn btn-secondary">Continue Shopping</button>
+                        <button type="submit" class="btn btn-primary">Complete Purchase</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Right Section: Order Summary -->
+        <div class="right-section">
+            <div class="order-items" id="orderItemsContainer">
+                <!-- Dynamic cart items will be inserted here -->
+            </div>
+
+            <!-- Empty Cart Message -->
+            <div id="emptyCheckout" class="empty-cart" style="display: none;">
+                <div class="empty-cart-icon">🛒</div>
+                <h3 class="empty-cart-title">Your cart is empty</h3>
+                <p>Add some products to checkout!</p>
+            </div>
+
+            <!-- Order Totals -->
+            <div class="order-totals">
+                <div class="total-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">₹0</span>
+                </div>
+                <div class="total-row">
+                    <span>Shipping</span>
+                    <span id="shipping">₹0</span>
+                </div>
+                <div class="total-row">
+                    <span>Tax</span>
+                    <span id="tax">₹0</span>
+                </div>
+                <div class="total-row final">
+                    <span>Total</span>
+                    <span id="totalAmount">₹0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MobileHub</h3>
+                <p>Your trusted online destination for premium mobile phones and accessories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6a5a3a6a6b9a4a296bbb9b4bfbab3bea3b4f8b5b9bb">[email&#160;protected]</a></p>
+                <p>📞 Phone: +91-8765-432-100</p>
+                <p>📍 Address: Ahmedabad, Gujarat, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MobileHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load cart from localStorage and display items
+        let cart = JSON.parse(localStorage.getItem('audiohub_cart')) || {};
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckoutItems();
+        });
+
+        function loadCheckoutItems() {
+            const container = document.getElementById('orderItemsContainer');
+            const emptyCheckout = document.getElementById('emptyCheckout');
+            
+            container.innerHTML = '';
+            let subtotal = 0;
+            let itemCount = 0;
+
+            // Check if cart has items
+            if (Object.keys(cart).length === 0) {
+                container.style.display = 'none';
+                emptyCheckout.style.display = 'block';
+                updateTotals(0, 0);
+                return;
+            }
+
+            // Render each cart item
+            for (let productId in cart) {
+                if (cart[productId].qty > 0) {
+                    const item = cart[productId];
+                    const itemTotal = item.qty * item.price;
+                    subtotal += itemTotal;
+                    itemCount += item.qty;
+
+                    const orderItemHtml = `
+                        <div class="order-item" data-product-id="${productId}">
+                            <div class="item-image">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="item-details-wrapper">
+                                <div class="item-info">
+                                    <h3>${item.name}</h3>
+                                    <div class="price">₹${new Intl.NumberFormat('en-IN').format(item.price)}</div>
+                                </div>
+                                <div class="item-actions">
+                                    <div class="quantity-control">
+                                        <button type="button" onclick="changeQtyCheckout('${productId}', -1)">−</button>
+                                        <span>${item.qty}</span>
+                                        <button type="button" onclick="changeQtyCheckout('${productId}', 1)">+</button>
+                                    </div>
+                                    <button type="button" class="delete-btn" onclick="removeItemCheckout('${productId}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="delete-icon" viewBox="0 0 24 24">
+                                            <path d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z" data-original="#000000"></path>
+                                            <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z" data-original="#000000"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += orderItemHtml;
+                }
+            }
+
+            container.style.display = 'block';
+            emptyCheckout.style.display = 'none';
+            updateTotals(subtotal, itemCount);
+        }
+
+        function updateTotals(subtotal, itemCount) {
+            const shippingCharge = subtotal > 0 ? 0 : 0; // Free shipping
+            const taxRate = 0.10; // 10% tax
+            const tax = Math.round(subtotal * taxRate);
+            const total = subtotal + shippingCharge + tax;
+
+            document.getElementById('subtotal').textContent = '₹' + new Intl.NumberFormat('en-IN').format(subtotal);
+            document.getElementById('shipping').textContent = shippingCharge === 0 ? 'FREE' : '₹' + new Intl.NumberFormat('en-IN').format(shippingCharge);
+            document.getElementById('tax').textContent = '₹' + new Intl.NumberFormat('en-IN').format(tax);
+            document.getElementById('totalAmount').textContent = '₹' + new Intl.NumberFormat('en-IN').format(total);
+        }
+
+        function changeQtyCheckout(productId, change) {
+            if (cart[productId]) {
+                cart[productId].qty = Math.max(0, cart[productId].qty + change);
+                if (cart[productId].qty === 0) {
+                    delete cart[productId];
+                }
+                localStorage.setItem('audiohub_cart', JSON.stringify(cart));
+                loadCheckoutItems();
+            }
+        }
+
+        function removeItemCheckout(productId) {
+            delete cart[productId];
+            localStorage.setItem('audiohub_cart', JSON.stringify(cart));
+            loadCheckoutItems();
+        }
+    </script>

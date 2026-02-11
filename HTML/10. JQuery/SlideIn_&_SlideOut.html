@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>  Slide In & Slide Out  </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <button id ="slideUp"> Slide Up </button>
+        <button id ="slideDown"> Slide Down </button>
+        <p id="p1" style="background-color:lightblue;color:blue;font-size:40px;">This is a paragraph</p>
+        <script>
+            $(document).ready(function(){
+                $("#slideUp").click(function(){
+                    $("#p1").slideUp();
+                });
+                $("#slideDown").click(function(){
+                    $("#p1").slideDown();
+                });
+            });
+        </script>
+    </body>
+</html>

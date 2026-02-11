@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>  hide() and show()  </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+
+        <button id ="hide"> Hide </button>
+        <button id ="show"> Show </button>
+
+        <p id="p1">This is a paragraph</p>
+
+        <script>
+            $(document).ready(function(){
+                $("#hide").click(function(){
+                    $("#p1").hide();
+                });
+                $("#show").click(function(){
+                    $("#p1").show();
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ School Registration Form 2025-2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #fff7e6;  /* cream color */
+        }
+        .header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .intro {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 5px;
+            vertical-align: top;
+        }
+        .label {
+            width: 35%;
+            font-weight: bold;
+            text-align: left;
+        }
+        .input {
+            width: 65%;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .dob-row, .income-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        .dob-input {
+            width: 40% !important;
+            margin-right: 10px;
+        }
+        .sex-label {
+            margin-right: 5px;
+            white-space: nowrap;
+        }
+        .sex-select {
+            width: 43.5% !important;
+        }
+        .income-input {
+            width: 48% !important;
+            margin-right: 10px;
+        }
+        .minority-label {
+            margin-right: 5px;
+            white-space: nowrap;
+        }
+        .minority-select {
+            width: 35.4% !important;
+        }
+        .subjects-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .subjects-table td {
+            width: 16.66%; /* For 6 subjects in 2 rows or adjust */
+        }
+        .subjects-table input {
+            width: 100%;
+        }
+        .subjects-label {
+            margin-bottom: 5px;
+            display: block;
+        }
+        .instructions {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+        .signature-input {
+            border: none;
+            border-bottom: 1px solid #000;
+            width: 100%;
+            background: transparent;
+        }
+        .signatures-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .signature-group {
+            display: flex;
+            align-items: center;
+            width: 45%;
+        }
+        .signature-group label {
+            margin-right: 10px;
+            white-space: nowrap;
+            font-weight: bold;
+        }
+        .signature-group input {
+            flex: 1;
+        }
+        .submit-note {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        XYZ SCHOOL AHMEDABAD<br>
+        Registration Form 2025-2026
+    </div>
+
+    <div class="intro">
+        <p>Dear Parent,</p>
+        <p>For CBSE registration of G11, kindly fill the details of your ward. Ensure correct D.O.B. and spelling of student's name, father's name and mother's name as defined in the marksheet of Grade X. "NO modifications are permitted after registration."</p>
+        <p><strong>Fill this form in BLOCK LETTERS Only</strong></p>
+    </div>
+    
+    <form id="registrationForm">
+        <table>
+            <tr>
+                <td class="label">Student's Name:</td>
+                <td class="input"><input type="text" id="studentName" name="studentName" required maxlength="100"></td>
+            </tr>
+            <tr>
+                <td class="label">Father's Name:</td>
+                <td class="input"><input type="text" id="fatherName" name="fatherName" required maxlength="100"></td>
+            </tr>
+            <tr>
+                <td class="label">Mother's Name:</td>
+                <td class="input"><input type="text" id="motherName" name="motherName" required maxlength="100"></td>
+            </tr>
+            <tr>
+                <td class="label">Date of Birth:</td>
+                <td class="input">
+                    <div class="dob-row">
+                        <input type="date" id="dob" name="dob" required class="dob-input">
+                        <span class="sex-label">SEX(M/F):</span>
+                        <select id="sex" name="sex" required class="sex-select">
+                            <option value="">Select</option>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Student Aadhaar Card No.:</td>
+                <td class="input"><input type="text" id="aadhar" name="aadhar" required pattern="\d{12}" maxlength="12" placeholder="Enter 12-digit Aadhaar"></td>
+            </tr>
+            <tr>
+                <td class="label">Category (GEN/ST/SC/OBC):</td>
+                <td class="input">
+                    <select id="category" name="category" required>
+                        <option value="">Select</option>
+                        <option value="GEN">GEN</option>
+                        <option value="ST">ST</option>
+                        <option value="SC">SC</option>
+                        <option value="OBC">OBC</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Annual Income:</td>
+                <td class="input">
+                    <div class="income-row">
+                        <input type="text" id="annualIncome" name="annualIncome" required class="income-input">
+                        <span class="minority-label">Minority (Yes/No):</span>
+                        <select id="minority" name="minority" class="minority-select">
+                            <option value="">Select</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">E-mail:</td>
+                <td class="input"><input type="email" id="email" name="email"></td>
+            </tr>
+            <tr>
+                <td class="label">Only Child:</td>
+                <td class="input">
+                    <select id="onlyChild" name="onlyChild">
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Mob. No.:</td>
+                <td class="input"><input type="tel" id="mobile" name="mobile" required pattern="\d{10}" maxlength="10" placeholder="Enter 10-digit mobile"></td>
+            </tr>
+        </table>
+
+        <div class="subjects-label">Subjects:</div>
+        <table class="subjects-table">
+            <tr>
+                <td><input type="text" name="subject1" placeholder="1." maxlength="50"></td>
+                <td><input type="text" name="subject2" placeholder="2." maxlength="50"></td>
+                <td><input type="text" name="subject3" placeholder="3." maxlength="50"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="subject4" placeholder="4." maxlength="50"></td>
+                <td><input type="text" name="subject5" placeholder="5." maxlength="50"></td>
+                <td><input type="text" name="subject6" placeholder="6." maxlength="50"></td>
+            </tr>
+        </table>
+
+        <div class="instructions">
+            <ul>
+                <li>04 latest passport size colour photographs in sports uniform (white background, Name (in capital letters) & Date of clicking photograph written on it) & Student's Aadhaar card photocopy has to be submitted.</li>
+                <li>Registration/LOC fees will be charged according to the notification by CBSE as and when school receives it.</li>
+            </ul>
+            <p>You are requested to submit this form by 15th July'25.</p>
+        </div>
+
+        <div class="signatures-row">
+            <div class="signature-group">
+                <label>Parent's Signature:</label>
+                <input type="text" name="parentSignature" class="signature-input" placeholder="Signature">
+            </div>
+            <div class="signature-group">
+                <label>Student's Signature:</label>
+                <input type="text" name="studentSignature" class="signature-input" placeholder="Signature">
+            </div>
+        </div>
+
+        <div class="submit-note">
+            <p><em>Note: This is a digital representation. For official submission, print and fill the physical form.</em></p>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rocket Animation</title>
+        <style>
+            body {
+                margin: 0;
+                background: black;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .rocket {
+                position: absolute;
+                bottom: -100px;
+                left: 50%;
+                width: 40px;
+                height: 100px;
+                background: white;
+                border-radius: 20px 20px 5px 5px;
+                animation: launch 5s linear infinite;
+            }
+
+            .fire {
+                position: absolute;
+                bottom: -30px;
+                left: 50%;
+                width: 20px;
+                height: 30px;
+                background: red;
+                transform: translate(-50%);
+                border-radius: 50%;
+            }
+
+            @keyframes launch {
+                from {bottom: -120px;}
+                to{bottom: 110%;}
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class = "rocket">
+            <div class = "fire"></div>
+        </div>
+    </body>
+</html>

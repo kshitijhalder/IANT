@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Get and Set Method </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#btn1").click(function(){
+                    alert("Text: " + $("#para1").text("jQuery Tutorial"));
+                });
+                $("#btn2").click(function(){
+                    alert("HTML: " + $("#para1").html("<b> jQuery Tutorial </b>"));
+                });
+                $("#btn3").click(function(){
+                    alert("Value: " + $("#para2").val("jQuery Tutorial"));
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1> Get and Set Method </h1>
+        <p id="para1"> You are studing <b>JQuery</b>. </p>
+        <p> Name : <input type="text" id="para2" value="jQuery Tutorial"> </p>
+        <button id="btn1"> Get Text </button>
+        <button id="btn2"> Get HTML </button>
+        <button id="btn3"> Get Value </button>
+    </body>
+</html>

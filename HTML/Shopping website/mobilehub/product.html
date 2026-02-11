@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - MobileHub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">MobileHub</h1>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Product Details -->
+    <section class="product-details">
+        <div class="product-detail-container">
+            <div class="product-image">
+                <img src="https://images.unsplash.com/photo-1511707267537-b85faf00021e?w=400&h=400&fit=crop" alt="iPhone 15 Pro">
+            </div>
+
+            <div class="product-info">
+                <h1>iPhone 15 Pro</h1>
+                <p class="brand">Brand: <strong>Apple</strong></p>
+                <p class="price-large">₹79,999</p>
+                <p class="rating">⭐⭐⭐⭐⭐ (245 reviews)</p>
+                <p class="in-stock">In Stock: <span class="stock-yes">Yes</span></p>
+
+                <h3>Product Description</h3>
+                <p>Experience the next generation of iPhone with the iPhone 15 Pro. Featuring a stunning display, powerful processor, and incredible camera system, this is the ultimate smartphone for professionals and enthusiasts.</p>
+
+                <h3>Key Specifications</h3>
+                <table class="specs-table">
+                    <tr>
+                        <th>Feature</th>
+                        <th>Specification</th>
+                    </tr>
+                    <tr>
+                        <td>Display</td>
+                        <td>6.1-inch Super Retina XDR</td>
+                    </tr>
+                    <tr>
+                        <td>Processor</td>
+                        <td>A17 Pro Chip</td>
+                    </tr>
+                    <tr>
+                        <td>Camera</td>
+                        <td>48MP Main + 12MP Ultra Wide + 12MP Telephoto</td>
+                    </tr>
+                    <tr>
+                        <td>Battery</td>
+                        <td>3200 mAh</td>
+                    </tr>
+                    <tr>
+                        <td>Storage</td>
+                        <td>128GB, 256GB, 512GB, 1TB</td>
+                    </tr>
+                    <tr>
+                        <td>Colors</td>
+                        <td>Black Titanium, White Titanium, Gold, Natural</td>
+                    </tr>
+                </table>
+
+                <h3>Select Options</h3>
+                <form class="product-form" method="POST">
+                    <div class="form-group">
+                        <label for="storage">Storage:</label>
+                        <select id="storage" name="storage" required>
+                            <option value="">Select Storage</option>
+                            <option value="128gb">128GB</option>
+                            <option value="256gb">256GB</option>
+                            <option value="512gb">512GB</option>
+                            <option value="1tb">1TB</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <select id="color" name="color" required>
+                            <option value="">Select Color</option>
+                            <option value="black">Black Titanium</option>
+                            <option value="white">White Titanium</option>
+                            <option value="gold">Gold</option>
+                            <option value="natural">Natural</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">Add to Cart</button>
+                </form>
+
+                <div class="delivery-info">
+                    <h3>Delivery & Returns</h3>
+                    <ul>
+                        <li>✓ Free Delivery on Orders Above ₹50,000</li>
+                        <li>✓ 7-Day Easy Returns</li>
+                        <li>✓ Cash on Delivery Available</li>
+                        <li>✓ 1-Year Manufacturer Warranty</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+            <h2>Customer Reviews</h2>
+            <div class="review">
+                <p class="reviewer-name">John Doe ⭐⭐⭐⭐⭐</p>
+                <p class="review-text">Excellent phone! The camera quality is outstanding and battery life is impressive.</p>
+            </div>
+            <div class="review">
+                <p class="reviewer-name">Sarah Smith ⭐⭐⭐⭐</p>
+                <p class="review-text">Great phone overall. Bit expensive but worth it for the features.</p>
+            </div>
+            <div class="review">
+                <p class="reviewer-name">Mike Johnson ⭐⭐⭐⭐⭐</p>
+                <p class="review-text">Best phone I've ever owned. Performance is incredible.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About MobileHub</h3>
+                <p>Your trusted online destination for premium mobile phones and accessories.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="brands.html">Brands</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: support@mobilehub.com</p>
+                <p>Phone: +91-8765-432-100</p>
+                <p>Address: Ahmedabad, Gujarat, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MobileHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

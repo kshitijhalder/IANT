@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+    <head
+    <title>
+        Canvas
+    </title>
+    </head>
+    <body>
+        <img id="html" height="500" width="300" src="/Users/kshitijhalder/Downloads/Abstract Object Photo.jpg" alt="HTML">
+        <canvas id="myCanvas" width="800" height="600" style="border:1px solid #000000;"></canvas>
+        <script> 
+            var Canvas = document.getElementById("myCanvas");
+            var Obj = Canvas.getContext("2d");
+            
+            Obj.moveTo(350,100);
+            Obj.lineTo(200,200);
+            Obj.lineTo(500,200);
+            Obj.lineTo(350,100);
+            Obj.stroke();
+
+        </script>
+        <script>
+            var Canvas = document.getElementById("myCanvas");
+            var Cir = Canvas.getContext("2d");
+            Cir.beginPath();
+            Cir.arc(400,300,100,0,2*Math.PI);
+            Cir.stroke();
+        </script>
+        <script>
+            var Canvas = document.getElementById("myCanvas");
+            var Text = Canvas.getContext("2d");
+            Text.font = "30px Arial";
+            Text.fillText("Kshitij", 200, 300);
+            Text.strokeText("Halder", 200, 420);
+        </script>
+        <!-- <script>
+            window.onload = function() {
+                var Canvas = document.getElementById("myCanvas");
+                var Img = Canvas.getContext("2d");
+                var image = document.getElementById("html");
+                Img.drawImage(image, 0,0);
+            };
+        </script> -->
+    </body>
+</html>

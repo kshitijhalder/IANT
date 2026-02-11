@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/kshitijhalder/Desktop/Workstation/IANT/C/Chp_12/output/ptr_and_array'
+relocations:     []
+...

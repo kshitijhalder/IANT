@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Function</title>
+        <script type="text/javascript"> 
+        function Hello () {
+            alert("Hello, Welcome to IANT");
+        }
+        <!-- Hello(); -->
+
+        function Form () {
+            var name = document.f1.name.value;
+            var email = document.f1.email.value;
+            var password = document.f1.password.value;
+
+            if (name == "" ) {
+                alert("Please enter your name");
+                return false;
+            }
+            if (email == "" ) {
+                alert("Please enter your email");
+                return false;
+            }
+            if (password == "" ) {
+                alert("Please enter only alphabets or special characters");
+                return false;
+            }
+             
+            alert("Form Submitted Successfully!");
+            return true;
+             
+            document.writeln("Name: " + name + "<br>");
+            document.writeln("Email: " + email + "<br>");
+            document.writeln("Password: " + password + "<br>");
+
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>Function</h1>
+        <p> Click on the button to display the message</p>
+            <form name="f1" method="get" onsubmit="return Form()"> 
+                <table border="1" cellpadding="8">
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input type="button" value="Submit" onclick="Form()">
+                            <!-- <button type="button" onclick="Form()">Submit</button> -->
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+    </body>
+</html>

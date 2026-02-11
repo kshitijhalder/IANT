@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title> Adding Elements </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#btn1").click(function(){
+                    $("#p").append("<p> Text Added 1 </p>");
+                });
+                $("#btn2").click(function(){
+                    $("#p").prepend("<p> Text Added 2 </p>");
+                });
+                $("#btn3").click(function(){
+                    $("#p").after("<p> Text Added 3 </p>");
+                });
+                $("#btn4").click(function(){
+                    $("#p").before("<li> Text Added 4 </li>");
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1> Adding Elements </h1>
+        <p id="p"> You are studing <b>JQuery</b>. </p>
+        <ol id="ol">
+            <li> JavaScript </li>
+            <li> HTML </li>
+            <li> CSS </li>
+        </ol>
+        <button id="btn1"> Append </button>
+        <button id="btn2"> Prepend </button>
+        <button id="btn3"> After </button>
+        <button id="btn4"> Before </button>
+    </body>
+</html>

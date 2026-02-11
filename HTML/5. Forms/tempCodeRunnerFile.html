@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ School Registration Form 2025-2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .intro {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 200px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            width: 300px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+        .instructions {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+        }
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .signature {
+            width: 45%;
+        }
+        .submit-note {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        XYZ SCHOOL AHMEDABAD<br>
+        Registration Form 2025-2026
+    </div>
+
+    <div class="intro">
+        <p>Dear Parent,</p>
+        <p>For CBSE registration of G11, kindly fill the details of your ward. Ensure correct D.O.B. and spelling of student's name, father's name and mother's name as defined in the marksheet of Grade X. "NO modifications are permitted after registration."</p>
+        <p><strong>Fill this form in BLOCK LETTERS Only</strong></p>
+    </div>
+
+    <form id="registrationForm">
+        <div class="form-group">
+            <div class="row">
+                <label for="studentName">Student's Name:</label>
+                <input type="text" id="studentName" name="studentName" required maxlength="100">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="fatherName">Father's Name:</label>
+                <input type="text" id="fatherName" name="fatherName" required maxlength="100">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="motherName">Mother's Name:</label>
+                <input type="text" id="motherName" name="motherName" required maxlength="100">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+                <label for="sex" style="margin-left: 20px;">SEX(M/F):</label>
+                <select id="sex" name="sex" required>
+                    <option value="">Select</option>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="aadhar">Student Aadhaar Card No.:</label>
+                <input type="text" id="aadhar" name="aadhar" required pattern="\d{12}" maxlength="12" placeholder="Enter 12-digit Aadhaar">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="category">Category (GEN/ST/SC/OBC):</label>
+                <select id="category" name="category" required>
+                    <option value="">Select</option>
+                    <option value="GEN">GEN</option>
+                    <option value="ST">ST</option>
+                    <option value="SC">SC</option>
+                    <option value="OBC">OBC</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="annualIncome">Annual Income:</label>
+                <input type="text" id="annualIncome" name="annualIncome" required>
+                <label for="minority" style="margin-left: 20px;">Minority (Yes/No):</label>
+                <select id="minority" name="minority">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="onlyChild">Only Child:</label>
+                <select id="onlyChild" name="onlyChild">
+                    <option value="">Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <label for="mobile">Mob. No.:</label>
+                <input type="tel" id="mobile" name="mobile" required pattern="\d{10}" maxlength="10" placeholder="Enter 10-digit mobile">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Subjects:</label>
+            <div class="subjects">
+                <input type="text" name="subject1" placeholder="1." maxlength="50">
+                <input type="text" name="subject2" placeholder="2." maxlength="50">
+                <input type="text" name="subject3" placeholder="3." maxlength="50">
+                <input type="text" name="subject4" placeholder="4." maxlength="50">
+                <input type="text" name="subject5" placeholder="5." maxlength="50">
+                <input type="text" name="subject6" placeholder="6." maxlength="50">
+            </div>
+        </div>
+
+        <div class="instructions">
+            <ul>
+                <li>04 latest passport size colour photographs in sports uniform (white background, Name (in capital letters) & Date of clicking photograph written on it) & Student's Aadhaar card photocopy has to be submitted.</li>
+                <li>Registration/LOC fees will be charged according to the notification by CBSE as and when school receives it.</li>
+            </ul>
+            <p>You are requested to submit this form by 15th July'25.</p>
+        </div>
+
+        <div class="signatures">
+            <div class="signature">
+                <label>Parent's Signature:</label><br>
+                <input type="text" name="parentSignature" placeholder="Signature" style="border: none; border-bottom: 1px solid #000; width: 100%;">
+            </div>
+            <div class="signature">
+                <label>Student's Signature:</label><br>
+                <input type="text" name="studentSignature" placeholder="Signature" style="border: none; border-bottom: 1px solid #000; width: 100%;">
+            </div>
+        </div>
+
+        <div class="submit-note">
+            <p><em>Note: This is a digital representation. For official submission, print and fill the physical form.</em></p>
+        </div>
+    </form>
+</body>
+</html>
