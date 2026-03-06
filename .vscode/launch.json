@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/kshitijhalder/Desktop/Workstation/IANT/C++/Chp 4",
-      "program": "/Users/kshitijhalder/Desktop/Workstation/IANT/C++/Chp 4/build/Debug/outDebug"
+      "cwd": "/Users/kshitijhalder/Desktop/Workstation/IANT/PHP/3. Essentials of PHP/Web Concepts",
+      "program": "/Users/kshitijhalder/Desktop/Workstation/IANT/PHP/3. Essentials of PHP/Web Concepts/build/Debug/outDebug"
     }
   ]
 }

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#0a0a0a"/>
+<title>My Training Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --bg4: #222222;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --muted: #777;
+    --faint: #333;
+    --upper: #3b82f6;
+    --lower: #22c55e;
+    --push: #f97316;
+    --pull: #a855f7;
+    --legs: #14b8a6;
+    --rest: #444;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --radius: 12px;
+    --day-color: #3b82f6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 100px;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px 10px;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .app-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .today-badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--day-color);
+    color: white;
+  }
+
+  /* ── DAY TABS ── */
+  .day-tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .day-tab.active {
+    background: var(--day-color);
+    border-color: var(--day-color);
+    color: white;
+  }
+  .day-tab.rest-tab.active { background: var(--rest); border-color: var(--rest); }
+
+  /* ── CONTENT AREA ── */
+  .content { padding: 16px; }
+  .day-view { display: none; }
+  .day-view.active { display: block; }
+
+  /* ── DAY HERO ── */
+  .day-hero {
+    border-radius: var(--radius);
+    padding: 20px 18px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+  }
+  .day-hero::before {
+    content: attr(data-label);
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 90px;
+    font-weight: 900;
+    color: var(--day-color);
+    opacity: 0.06;
+    line-height: 1;
+    letter-spacing: -2px;
+    pointer-events: none;
+  }
+  .day-hero-day {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--day-color);
+    margin-bottom: 4px;
+  }
+  .day-hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .day-hero-sub {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .stat-pill span { color: var(--day-color); font-weight: 700; }
+
+  /* ── INJURY BANNER ── */
+  .injury-banner {
+    background: #1a1200;
+    border: 1px solid #4a3000;
+    border-left: 3px solid var(--yellow);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #d4b483;
+  }
+  .injury-banner strong { color: var(--yellow); display: block; margin-bottom: 2px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 14px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--bg3);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .section-count {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-left: 6px;
+    font-family: 'Barlow', sans-serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .chevron {
+    color: var(--muted);
+    font-size: 16px;
+    transition: transform 0.2s;
+  }
+  .section.collapsed .chevron { transform: rotate(-90deg); }
+  .section-body { background: var(--bg2); }
+  .section.collapsed .section-body { display: none; }
+
+  /* ── WARMUP ITEMS ── */
+  .warmup-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+  }
+  .warmup-item:last-child { border-bottom: none; }
+  .warmup-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--bg4);
+    border: 1px solid var(--faint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .warmup-info { flex: 1; }
+  .warmup-name { font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .warmup-meta { font-size: 12px; color: var(--muted); }
+  .warmup-meta b { color: var(--day-color); }
+  .vid-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #1a0000;
+    border: 1px solid #ff0000;
+    color: #ff4444;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+  }
+  .vid-btn:active { background: #ff0000; color: white; }
+
+  /* ── EXERCISE CARDS ── */
+  .exercise-card {
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .exercise-card:last-child { border-bottom: none; }
+  .exercise-header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .ex-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--day-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    color: white;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+  .ex-info { flex: 1 }
+  .ex-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+  .ex-tags {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag-sets { background: #1a2540; color: #60a5fa; }
+  .tag-reps { background: #1a2a1a; color: #4ade80; }
+  .tag-rest { background: #2a1a0a; color: #fb923c; }
+  .ex-chevron { color: var(--muted); font-size: 14px; transition: transform 0.2s; }
+  .exercise-card.open .ex-chevron { transform: rotate(180deg); }
+
+  .exercise-body {
+    display: none;
+    padding: 0 14px 14px 58px;
+  }
+  .exercise-card.open .exercise-body { display: block; }
+
+  .ex-muscles {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .ex-muscles b { color: var(--day-color); }
+
+  .ex-cues { margin-bottom: 12px; }
+  .cue {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #ccc;
+  }
+  .cue::before {
+    content: '→';
+    color: var(--day-color);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+  .cue.injury {
+    color: #d4b483;
+    background: #15110a;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-top: 4px;
+    border-left: 2px solid var(--yellow);
+  }
+  .cue.injury::before { content: '🩹'; font-size: 11px; }
+
+  /* ── VIDEO EMBED ── */
+  .video-container {
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    margin-bottom: 4px;
+  }
+  .video-container iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .video-placeholder {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    gap: 8px;
+  }
+  .video-placeholder .play-icon {
+    width: 52px;
+    height: 52px;
+    background: #ff0000;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+  .video-placeholder .vid-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    padding: 0 16px;
+    font-weight: 500;
+  }
+  .video-placeholder .vid-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  /* ── CARDIO SECTION ── */
+  .cardio-block {
+    padding: 14px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .cardio-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .cardio-info {}
+  .cardio-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+    color: var(--day-color);
+  }
+  .cardio-detail {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.6;
+  }
+  .hr-badge {
+    display: inline-block;
+    background: #1a0a0a;
+    border: 1px solid var(--red);
+    color: #ff6b6b;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 6px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist { padding: 8px 14px 14px; }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--faint);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-size: 12px;
+  }
+  .check-item.done .check-box {
+    background: var(--day-color);
+    border-color: var(--day-color);
+    color: white;
+  }
+  .check-label {
+    font-size: 13px;
+    color: #ccc;
+    transition: color 0.15s;
+  }
+  .check-item.done .check-label {
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  /* ── REST DAY ── */
+  .rest-hero {
+    text-align: center;
+    padding: 48px 24px;
+  }
+  .rest-emoji { font-size: 64px; margin-bottom: 16px; }
+  .rest-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .rest-sub { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+  .rest-tips { text-align: left; }
+  .rest-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+  .rest-tip:last-child { border-bottom: none; }
+  .tip-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ── BOTTOM NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border);
+    display: flex;
+    padding: 8px 4px max(env(safe-area-inset-bottom), 8px);
+    z-index: 200;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 4px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.15s;
+    border: none;
+    background: transparent;
+    -webkit-appearance: none;
+  }
+  .nav-item:active { background: var(--bg3); }
+  .nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    margin-bottom: 2px;
+    transition: all 0.15s;
+  }
+  .nav-item.active .nav-dot {
+    background: var(--day-color);
+    width: 24px;
+    border-radius: 3px;
+  }
+  .nav-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+  .nav-item.active .nav-label { color: var(--day-color); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--day-color);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div class="header-top">
+    <div class="app-title">⚡ My Training</div>
+    <div class="today-badge" id="todayBadge">Today</div>
+  </div>
+  <div class="day-tabs" id="dayTabs"></div>
+</div>
+
+<div class="content" id="mainContent"></div>
+
+<nav class="bottom-nav" id="bottomNav"></nav>
+
+<script>
+const DAYS_DATA = [
+  {
+    id: 'mon',
+    dayName: 'Monday',
+    label: 'Day 1',
+    title: 'Upper Body',
+    subtitle: 'Back · Chest · Shoulders · Arms · Posture',
+    color: '#3b82f6',
+    duration: '60 min',
+    cardio: '10 min bike',
+    emoji: '🏋️',
+    isRest: false,
+    injury: 'Keep chest proud and shoulder blades retracted on every rep. Prioritise form — never rush weight increases.',
+    warmup: [
+      { name: 'Thoracic Extension over Bench Edge', duration: '90 seconds', purpose: 'Opens chest, counters kyphosis', yt: 'https://www.youtube.com/results?search_query=thoracic+extension+over+bench+mobility+kyphosis' },
+      { name: 'Arm Circles (forward + backward)', duration: '30 sec each direction', purpose: 'Lubricates shoulder joints', yt: 'https://www.youtube.com/results?search_query=arm+circles+shoulder+warmup+exercise' },
+      { name: 'Shoulder Rolls', duration: '60 seconds', purpose: 'Activates scapular muscles', yt: 'https://www.youtube.com/results?search_query=shoulder+rolls+warmup' },
+      { name: 'Scapular Push-Ups (no arm bend)', duration: '2 × 10 reps', purpose: 'Teaches scapular retraction — KEY for kyphosis', yt: 'https://www.youtube.com/results?search_query=scapular+push+ups+how+to+posture' },
+      { name: 'Rear Delt Raises (very light DB)', duration: '2 × 12 reps', purpose: 'Pre-activates rear delts', yt: 'https://www.youtube.com/results?search_query=rear+delt+raise+dumbbell+warmup+form' },
+    ],
+    exercises: [
+      { name: 'Barbell Bent-Over Row', sets: '3', reps: '8–10', rest: '90s', muscles: 'Lats · Rhomboids · Traps · Rear Delts · Biceps', cues: ['Hinge at hips to ~45°, chest proud', 'Pull bar to lower ribs — not upper chest', 'Squeeze shoulder blades hard at top', '3 sec lowering, explode up'], injury: 'Soft knees throughout. If lower back rounds — reduce weight.', yt: 'https://www.youtube.com/results?search_query=barbell+bent+over+row+proper+form+tutorial+beginner', ytEmbed: 'FWJR5Ve8bnQ' },
+      { name: 'Dumbbell Floor Press', sets: '3', reps: '10–12', rest: '60s', muscles: 'Chest · Anterior Delts · Triceps', cues: ['Lie flat, knees bent at 45°', 'Elbows at 45° — not flared wide', 'Pause 1 sec when elbows touch floor', 'Press explosively, lower slowly (3s)'], injury: 'Safer than bench press for beginners — the floor limits shoulder range.', yt: 'https://www.youtube.com/results?search_query=dumbbell+floor+press+how+to+chest+tutorial', ytEmbed: 'XAI-K3kSCHM' },
+      { name: 'Seated DB Overhead Press', sets: '3', reps: '10', rest: '60s', muscles: 'Medial Delts · Anterior Delts · Triceps · Upper Traps', cues: ['Sit completely upright — no lumbar arch', 'Press directly overhead', 'Lower to ear level, 3 sec down', 'Chest proud every rep — this fights kyphosis'], injury: 'Seated upright position actively corrects your posture while you train.', yt: 'https://www.youtube.com/results?search_query=seated+dumbbell+overhead+press+form+tutorial', ytEmbed: 'qEwKCR5JCog' },
+      { name: 'Single-Arm DB Row', sets: '3', reps: '10 each', rest: '45s', muscles: 'Lats · Rhomboids · Rear Delts · Biceps', cues: ['Support hand and knee on bench', 'Keep spine neutral — no rotation', 'Pull elbow back past your hip', 'Full stretch at the bottom'], injury: 'Keep supporting knee firmly planted. Stop if lower back engages.', yt: 'https://www.youtube.com/results?search_query=single+arm+dumbbell+row+form+tutorial+beginners', ytEmbed: 'pYcpY20QaE8' },
+      { name: 'Rear Delt Flye (Prone on Bench)', sets: '3', reps: '15', rest: '45s', muscles: 'Rear Deltoids · Rhomboids · Mid-Traps', cues: ['Lie face-down, arms hanging below bench', 'Raise out to sides in a T shape', 'Maximum squeeze at top — hold 1 sec', 'Use very light weight. Quality over load.'], injury: 'PRIORITY POSTURE EXERCISE. Never skip this. 2–5 kg is fine.', yt: 'https://www.youtube.com/results?search_query=prone+rear+delt+flye+bench+posture+kyphosis', ytEmbed: 'EA7u4Q_8HQ0' },
+      { name: 'Dumbbell Bicep Curl', sets: '3', reps: '12', rest: '45s', muscles: 'Biceps Brachii · Brachialis', cues: ['Elbows pinned to sides — no swinging', '2 sec up, 3 sec down', 'Fully extend at the bottom each rep', 'Stand against wall if you catch yourself swinging'], injury: '', yt: 'https://www.youtube.com/results?search_query=dumbbell+bicep+curl+strict+form+beginners+tutorial', ytEmbed: 'ykJmrZ5v0Oo' },
+      { name: 'DB Tricep Overhead Extension', sets: '3', reps: '12', rest: '45s', muscles: 'Triceps Long Head · Lateral · Medial Head', cues: ['Sit upright, both hands on one dumbbell', 'Lower behind head — feel the stretch', 'Keep elbows close to ears — not flared', 'Full extension at the top'], injury: '', yt: 'https://www.youtube.com/results?search_query=dumbbell+overhead+tricep+extension+seated+form+tutorial', ytEmbed: '_gsUck-7M74' },
+    ],
+    cardioDetail: 'Stationary bike · Low-moderate resistance · Steady state pace. This is your active cool-down. Stay smooth.',
+    checklist: ['Thoracic extension done before pressing', 'Chest proud on all rows', 'Rear delt flyes — shoulder blades squeezed', 'Cardio at 117–137 bpm HR zone', 'Logged weights used this session'],
+  },
+  {
+    id: 'tue',
+    dayName: 'Tuesday',
+    label: 'Day 2',
+    title: 'Lower Body',
+    subtitle: 'Glutes · Hamstrings · Hip Hinge · Core',
+    color: '#22c55e',
+    duration: '60 min',
+    cardio: '10 min bike',
+    emoji: '🦵',
+    isRest: false,
+    injury: 'Tibia/Fibula still unstable. All exercises avoid deep knee flexion and single-leg loading. STOP if you feel sharp pain — not muscle burn — in your lower leg.',
+    warmup: [
+      { name: 'Seated Ankle Circles', duration: '60 sec each direction', purpose: 'Mobilises ankle joint — critical post-fracture', yt: 'https://www.youtube.com/results?search_query=seated+ankle+circles+mobility+fracture+rehab' },
+      { name: 'Bodyweight Glute Bridges', duration: '2 × 15 reps', purpose: 'Activates glutes, safe knee range', yt: 'https://www.youtube.com/results?search_query=bodyweight+glute+bridge+how+to+beginners' },
+      { name: 'Hip Flexor Stretch (hold wall)', duration: '60 sec each side', purpose: 'Counters tight hips, protects lower back', yt: 'https://www.youtube.com/results?search_query=standing+hip+flexor+stretch+hold+wall' },
+      { name: 'Clamshells (lying on side)', duration: '2 × 15 each side', purpose: 'Activates hip abductors for leg stability', yt: 'https://www.youtube.com/results?search_query=clamshell+exercise+hip+abductor+how+to' },
+      { name: 'Heel-Toe Walks (10m)', duration: '2 lengths', purpose: 'Ankle proprioception & Tibia loading', yt: 'https://www.youtube.com/results?search_query=heel+toe+walk+ankle+rehab+exercise' },
+    ],
+    exercises: [
+      { name: 'Barbell Romanian Deadlift (RDL)', sets: '3', reps: '10', rest: '75s', muscles: 'Hamstrings · Glutes · Spinal Erectors · Core', cues: ['Push hips back — do NOT bend knees forward', 'Bar stays close to legs throughout', 'Feel the hamstring stretch at the bottom', 'Soft slight bend in knees — this is not a squat'], injury: 'Minimal Tibia stress — safest hamstring exercise for your injury.', yt: 'https://www.youtube.com/results?search_query=romanian+deadlift+RDL+form+tutorial+beginners', ytEmbed: 'JCXUYuzwNrM' },
+      { name: 'Dumbbell Hip Thrust', sets: '3', reps: '12', rest: '60s', muscles: 'Glutes · Hamstrings · Core', cues: ['Upper back on bench edge', 'Dumbbell across hips', 'Drive hips to ceiling — HARD glute squeeze at top', '1-sec pause at top, 3-sec lowering'], injury: 'No spinal flexion. Keep back flat throughout.', yt: 'https://www.youtube.com/results?search_query=dumbbell+hip+thrust+how+to+form+tutorial+glutes', ytEmbed: 'LM8XHLYJoYs' },
+      { name: 'Goblet Squat — PARTIAL Range', sets: '3', reps: '10', rest: '60s', muscles: 'Quads · Glutes · Core', cues: ['Hold dumbbell at chest', 'ONLY go as deep as is pain-free — never force it', 'Chest tall, heels flat throughout', 'Push knees gently out over toes'], injury: 'Depth will increase naturally as your Tibia strengthens. Do not rush it.', yt: 'https://www.youtube.com/results?search_query=goblet+squat+beginner+form+tutorial+how+to', ytEmbed: 'MeIiIdhvXT4' },
+      { name: 'Dumbbell Sumo Deadlift', sets: '3', reps: '10', rest: '60s', muscles: 'Adductors · Glutes · Hamstrings · Quads', cues: ['Wide stance, toes out at ~45°', 'Hold dumbbell between legs', 'Hinge and squat simultaneously', 'Chest up and back flat throughout'], injury: 'Wide stance reduces forward knee travel — great for Tibia protection.', yt: 'https://www.youtube.com/results?search_query=dumbbell+sumo+deadlift+wide+stance+form+tutorial', ytEmbed: 'UVq1yHQFtrw' },
+      { name: 'Seated Calf Raise (DB on Knee)', sets: '3', reps: '15–20', rest: '45s', muscles: 'Gastrocnemius · Soleus · Tibialis', cues: ['Sit on bench, dumbbell on thigh', 'Full range: heel drops low, rises high', '2 sec up, 2 sec down — never rush', 'Add reps before adding weight'], injury: 'YOUR MOST IMPORTANT TIBIA REHAB EXERCISE. Progressive loading rebuilds the fracture site. Track this every week.', yt: 'https://www.youtube.com/results?search_query=seated+calf+raise+dumbbell+knee+how+to+tutorial', ytEmbed: '0W4Wy_PcFuE' },
+      { name: 'Dead Bug (Core)', sets: '3', reps: '10 each side', rest: '45s', muscles: 'Deep Core · Transverse Abdominis · Hip Flexors', cues: ['Lie on back, arms to ceiling, knees 90°', 'Lower back MUST stay flat throughout', 'Extend opposite arm and leg slowly', 'Breathe out as you extend'], injury: 'Zero lower back stress — perfect during recovery.', yt: 'https://www.youtube.com/results?search_query=dead+bug+exercise+core+form+tutorial+beginners', ytEmbed: 'g_BYB0R-4Ws' },
+    ],
+    cardioDetail: 'Stationary bike · LOW resistance · Seated ONLY. No standing or sprint intervals. Smooth, easy pedalling — active recovery for the leg.',
+    checklist: ['Ankle circles done before starting', 'RDL — hips back, not knees forward', 'Goblet squat — stayed within pain-free depth', 'Calf raises done — logged reps and weight', 'No sharp Tibia pain during session'],
+  },
+  {
+    id: 'wed',
+    dayName: 'Wednesday',
+    label: 'Day 3',
+    title: 'Rest Day',
+    subtitle: 'Recovery · Mobility · Growth',
+    color: '#444',
+    emoji: '😴',
+    isRest: true,
+    restTips: [
+      { icon: '🧘', text: 'Light 20-min walk if you feel up to it — keep it easy.' },
+      { icon: '🫀', text: 'Foam roll your thoracic spine and glutes — 5 mins each side.' },
+      { icon: '🤸', text: 'Chest opener stretch in doorway — 3 × 60 seconds. This fights kyphosis.' },
+      { icon: '💧', text: 'Hit 2.5–3L of water today. Recovery is when muscles actually grow.' },
+      { icon: '😴', text: 'Aim for 7–9 hours sleep tonight. Growth hormone peaks in deep sleep.' },
+      { icon: '🍗', text: 'Protein target today: ~140g. Keep food quality high even on rest days.' },
+    ]
+  },
+  {
+    id: 'thu',
+    dayName: 'Thursday',
+    label: 'Day 4',
+    title: 'Push',
+    subtitle: 'Chest · Shoulders · Triceps',
+    color: '#f97316',
+    duration: '60 min',
+    cardio: '10 min bike',
+    emoji: '🫸',
+    isRest: false,
+    injury: 'Kyphosis risk: pushing tightens already-tight chest and anterior shoulders. Keep chest proud on every press. Shoulder blades back and DOWN throughout.',
+    warmup: [
+      { name: 'Thoracic Rotation Stretch', duration: '60 sec each side', purpose: 'Opens mid-back before pushing — essential with kyphosis', yt: 'https://www.youtube.com/results?search_query=thoracic+rotation+stretch+mobility+kyphosis' },
+      { name: 'Doorway Chest Stretch', duration: '60 seconds', purpose: 'Counteracts chest tightness from kyphosis', yt: 'https://www.youtube.com/results?search_query=doorway+chest+stretch+kyphosis+posture+correction' },
+      { name: 'DB Lateral Raises (very light)', duration: '2 × 12 reps', purpose: 'Warms up rotator cuff before pressing', yt: 'https://www.youtube.com/results?search_query=dumbbell+lateral+raise+warmup+shoulder+rotator+cuff' },
+      { name: 'Pike Push-Ups', duration: '2 × 8 reps', purpose: 'Pre-activates shoulders and triceps', yt: 'https://www.youtube.com/results?search_query=pike+push+up+how+to+beginners+shoulder+warmup' },
+      { name: 'Wrist Circles', duration: '30 sec each direction', purpose: 'Preps wrists for pressing load', yt: 'https://www.youtube.com/results?search_query=wrist+circles+warmup+mobility' },
+    ],
+    exercises: [
+      { name: 'Dumbbell Floor Press', sets: '4', reps: '10', rest: '75s', muscles: 'Chest (Sternal) · Anterior Delts · Triceps', cues: ['Lie flat, knees bent, feet flat', 'Elbows at 45° — not flared', 'Pause 1 sec when elbows touch floor', 'Drive up explosively, lower 3 sec'], injury: 'Shoulder-safe: the floor prevents over-extension at the bottom.', yt: 'https://www.youtube.com/results?search_query=dumbbell+floor+press+4+sets+chest+workout', ytEmbed: 'XAI-K3kSCHM' },
+      { name: 'Seated DB Overhead Press', sets: '3', reps: '10', rest: '60s', muscles: 'Medial Delts · Anterior Delts · Triceps', cues: ['Completely upright — no lumbar arch', 'Press directly overhead, not angled forward', 'Lower to ear level — full range', 'Tall spine, proud chest every rep'], injury: 'Seated upright corrects kyphosis as you press.', yt: 'https://www.youtube.com/results?search_query=seated+dumbbell+shoulder+press+form+tutorial', ytEmbed: 'qEwKCR5JCog' },
+      { name: 'Dumbbell Lateral Raises', sets: '3', reps: '12–15', rest: '45s', muscles: 'Medial Deltoids · Supraspinatus', cues: ['Slight bend in elbows throughout', 'Raise to shoulder height ONLY — not higher', 'Lead with elbows, not hands', '2 sec up, 3 sec down — no swinging'], injury: 'Light weight only. Shoulder impingement risk if heavy without form.', yt: 'https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form+beginners', ytEmbed: 'kDqklk1ZESo' },
+      { name: 'DB Incline Floor Press (Elevated Back)', sets: '3', reps: '10', rest: '60s', muscles: 'Upper Chest · Anterior Delts · Triceps', cues: ['Elevate upper back on folded bag or wedge', 'Creates incline angle for upper chest', 'Same form as regular floor press', 'Shoulder blades retracted throughout'], injury: '', yt: 'https://www.youtube.com/results?search_query=incline+dumbbell+floor+press+upper+chest+tutorial', ytEmbed: 'XAI-K3kSCHM' },
+      { name: 'DB Tricep Overhead Extension', sets: '3', reps: '12', rest: '45s', muscles: 'Triceps Long Head · Lateral · Medial', cues: ['Seated, both hands on one dumbbell overhead', 'Lower behind head — feel long head stretch', 'Keep elbows close to ears throughout', 'Full extension at top every rep'], injury: '', yt: 'https://www.youtube.com/results?search_query=dumbbell+overhead+tricep+extension+how+to+seated', ytEmbed: '_gsUck-7M74' },
+      { name: 'Dumbbell Skull Crushers (Floor)', sets: '3', reps: '12', rest: '45s', muscles: 'Triceps — all three heads', cues: ['Lie flat, DBs extended above chest', 'Bend only at elbows, lower DBs beside ears', 'Controlled eccentric — 3 sec down', 'Press back up without flaring elbows'], injury: 'Keep upper arms vertical — do not let them drift backward.', yt: 'https://www.youtube.com/results?search_query=dumbbell+skull+crushers+floor+lying+tricep+form', ytEmbed: 'l3WBr_Bv_g8' },
+    ],
+    cardioDetail: 'Stationary bike · Moderate resistance · Steady cadence. Increase resistance slightly each week to build progressive cardio fitness.',
+    checklist: ['Thoracic rotation stretch done', 'Shoulder blades back on every press', 'No lower back arch during overhead press', 'Lateral raises stopped at shoulder height', 'Post-session: 2 min doorway chest stretch at home'],
+  },
+  {
+    id: 'fri',
+    dayName: 'Friday',
+    label: 'Day 5',
+    title: 'Pull',
+    subtitle: 'Back · Biceps · Rear Delts — Posture Day',
+    color: '#a855f7',
+    duration: '60 min',
+    cardio: '10 min bike',
+    emoji: '🫷',
+    isRest: false,
+    injury: 'This is your most important session for kyphosis correction. On EVERY rep: think "chest proud, shoulder blades pinched together." This is where your posture transforms.',
+    warmup: [
+      { name: 'Dead Hang from Pull-Up Bar', duration: '3 × 20 seconds', purpose: 'Decompresses spine, opens lats and shoulders', yt: 'https://www.youtube.com/results?search_query=dead+hang+pull+up+bar+spine+decompression+benefits' },
+      { name: 'Scapular Pull-Ups (no elbow bend)', duration: '2 × 8 reps', purpose: 'Isolates scapular depression — key posture muscle', yt: 'https://www.youtube.com/results?search_query=scapular+pull+ups+how+to+no+elbow+bend' },
+      { name: 'Prone Y-T-W Raises (light/BW)', duration: '2 × 8 each position', purpose: 'Activates lower/mid trapezius — fights kyphosis directly', yt: 'https://www.youtube.com/results?search_query=prone+YTW+raises+kyphosis+posture+lower+trap' },
+      { name: 'Doorway Chest Stretch', duration: '60 seconds', purpose: 'Opens chest before pulling — improves ROM', yt: 'https://www.youtube.com/results?search_query=doorway+chest+stretch+how+to+posture+correction' },
+      { name: 'DB Pull-Aparts', duration: '2 × 15 reps', purpose: 'Warms up rear delts and rhomboids', yt: 'https://www.youtube.com/results?search_query=dumbbell+pull+apart+rear+delt+warmup+exercise' },
+    ],
+    exercises: [
+      { name: 'Barbell Bent-Over Row — HEAVY', sets: '4', reps: '8', rest: '90s', muscles: 'Lats · Rhomboids · Traps · Rear Delts · Biceps · Core', cues: ['Heaviest lift of the week — focus on progressive overload', 'Hinge to ~45°, brace core hard', 'Drive elbows BACK — think "elbows to ceiling"', 'Chest stays proud — zero rounding'], injury: 'If lower back rounds at all — reduce weight immediately. Spine wins.', yt: 'https://www.youtube.com/results?search_query=barbell+bent+over+row+heavy+back+workout+form', ytEmbed: 'FWJR5Ve8bnQ' },
+      { name: 'Single-Arm Dumbbell Row', sets: '3', reps: '10 each', rest: '60s', muscles: 'Lats · Rhomboids · Rear Delts · Biceps', cues: ['Allow full range — feel the lat stretch at bottom', 'Pull elbow past your hip at the top', 'No torso rotation — spine neutral', 'Slow and deliberate — builds lats that pull shoulders back'], injury: '', yt: 'https://www.youtube.com/results?search_query=single+arm+dumbbell+row+full+tutorial+form+lats', ytEmbed: 'pYcpY20QaE8' },
+      { name: 'Prone Dumbbell Row (Chest on Bench)', sets: '3', reps: '12', rest: '60s', muscles: 'Rhomboids · Mid-Traps · Rear Delts · Lats', cues: ['Lie face-down on bench, both DBs hanging', 'Row both simultaneously', 'Squeeze at top for 1 sec every rep', 'Prone position naturally opens the chest'], injury: 'No cheating possible — pure back work. Excellent for kyphosis.', yt: 'https://www.youtube.com/results?search_query=prone+dumbbell+row+chest+on+bench+both+arms', ytEmbed: 'EA7u4Q_8HQ0' },
+      { name: 'Dumbbell Bicep Curl', sets: '3', reps: '12', rest: '45s', muscles: 'Biceps Brachii · Brachialis', cues: ['Elbows fixed — strict form only', '2 sec up, 3 sec down', 'Fully extend at bottom — full range every rep', 'Wall drill: stand against wall to eliminate swinging'], injury: '', yt: 'https://www.youtube.com/results?search_query=strict+dumbbell+bicep+curl+no+swing+form', ytEmbed: 'ykJmrZ5v0Oo' },
+      { name: 'Hammer Curl', sets: '3', reps: '12', rest: '45s', muscles: 'Brachialis · Biceps · Brachioradialis', cues: ['Neutral grip — thumbs facing up', 'Same strict form as bicep curl', 'Builds arm thickness via brachialis', 'Alternate arms or simultaneous'], injury: '', yt: 'https://www.youtube.com/results?search_query=hammer+curl+neutral+grip+dumbbell+form+tutorial', ytEmbed: 'zC3nLlEvin4' },
+      { name: 'Rear Delt Flye — PRIORITY', sets: '3', reps: '15', rest: '45s', muscles: 'Rear Deltoids · Rhomboids · Mid-Traps', cues: ['Hinge forward, light DBs', 'Raise to the sides — maximum squeeze at top', 'Hold the squeeze for 1 full second', 'If you cannot feel rear delts — reduce weight further'], injury: 'THE MOST IMPORTANT EXERCISE FOR YOUR KYPHOSIS. 2–5 kg is fine. Quality is everything.', yt: 'https://www.youtube.com/results?search_query=rear+delt+flye+how+to+bent+over+dumbbell+form', ytEmbed: 'EA7u4Q_8HQ0' },
+      { name: 'Dead Bug (Core)', sets: '3', reps: '10 each side', rest: '45s', muscles: 'Deep Core · Transverse Abdominis', cues: ['Lower back pressed flat to floor — non-negotiable', 'Opposite arm and leg extend slowly', 'Breathe out as you extend', 'This is anti-extension — protects spine during pulling'], injury: '', yt: 'https://www.youtube.com/results?search_query=dead+bug+exercise+how+to+core+anti+extension', ytEmbed: 'g_BYB0R-4Ws' },
+    ],
+    cardioDetail: 'Stationary bike · Light intervals: 1 min harder resistance / 1 min easier · 5 rounds · Target HR 117–137 bpm. Burns slightly more fat than steady state.',
+    checklist: ['Y-T-W raises done in warm-up', 'Barbell row — heaviest session, logged weight', 'Shoulder blades squeezed on every pulling rep', 'Rear delt flyes — light weight, max squeeze', 'Logged weights for progressive overload'],
+  },
+  {
+    id: 'sat',
+    dayName: 'Saturday',
+    label: 'Day 6',
+    title: 'Legs',
+    subtitle: 'Glutes · Hamstrings · Calves · Core',
+    color: '#14b8a6',
+    duration: '60 min',
+    cardio: '10 min bike',
+    emoji: '🦿',
+    isRest: false,
+    injury: 'Progressive version of Tuesday. Add weight on RDLs and Hip Thrusts only if form was clean last session. Never increase goblet squat depth until Tibia feels fully stable.',
+    warmup: [
+      { name: 'Seated Ankle Circles', duration: '60 sec each direction', purpose: 'Non-negotiable for Tibia recovery — more important on heavy leg day', yt: 'https://www.youtube.com/results?search_query=seated+ankle+circles+mobility+fracture+rehab' },
+      { name: 'Bodyweight Glute Bridges', duration: '2 × 15 reps', purpose: 'Activates posterior chain before loading', yt: 'https://www.youtube.com/results?search_query=bodyweight+glute+bridge+activation+warm+up' },
+      { name: 'Hip Flexor Stretch', duration: '60 sec each side', purpose: 'Prevents anterior pelvic tilt and back strain', yt: 'https://www.youtube.com/results?search_query=kneeling+hip+flexor+stretch+form+beginners' },
+      { name: 'Standing Hip Abduction', duration: '2 × 15 each side', purpose: 'Warms up hip stabilisers', yt: 'https://www.youtube.com/results?search_query=standing+hip+abduction+exercise+warmup' },
+      { name: 'Partial Bodyweight Squat', duration: '2 × 10 reps', purpose: 'Rehearses movement pattern before load', yt: 'https://www.youtube.com/results?search_query=partial+squat+form+bodyweight+beginners' },
+    ],
+    exercises: [
+      { name: 'Barbell RDL — Add Weight vs. Tuesday', sets: '4', reps: '10', rest: '75s', muscles: 'Hamstrings · Glutes · Spinal Erectors · Core', cues: ['Add 2.5–5 kg from Tuesday if form was clean', 'Hips back first, soft knees, bar close to legs', 'Pause 1 sec at the bottom — feel the stretch', 'Drive hips forward, glute squeeze at top'], injury: 'If lower back rounds — reduce weight. Form beats numbers every time.', yt: 'https://www.youtube.com/results?search_query=barbell+romanian+deadlift+RDL+progressive+overload+form', ytEmbed: 'JCXUYuzwNrM' },
+      { name: 'Dumbbell Hip Thrust — Higher Reps', sets: '3', reps: '15', rest: '60s', muscles: 'Glutes · Hamstrings · Core', cues: ['Higher reps than Tuesday for glute hypertrophy', '1-sec hard pause at the top — squeeze intensely', 'Control the lowering — 3 seconds down', 'Do NOT let lower back hyperextend at top'], injury: 'Upper back stable on bench throughout.', yt: 'https://www.youtube.com/results?search_query=dumbbell+hip+thrust+full+tutorial+glutes+hypertrophy', ytEmbed: 'LM8XHLYJoYs' },
+      { name: 'Goblet Squat — Slightly Deeper', sets: '3', reps: '12', rest: '60s', muscles: 'Quads · Glutes · Core', cues: ['Go slightly deeper than Tuesday IF pain-free only', 'Chest tall, heels flat, knees out', 'Never force depth — it increases naturally', 'Depth milestone: 12 pain-free weeks → full squat goal'], injury: 'Depth will improve naturally. Never push through Tibia discomfort.', yt: 'https://www.youtube.com/results?search_query=goblet+squat+full+form+guide+how+to+progression', ytEmbed: 'MeIiIdhvXT4' },
+      { name: 'Dumbbell Sumo Deadlift — More Reps', sets: '3', reps: '12', rest: '60s', muscles: 'Adductors · Glutes · Hamstrings · Quads', cues: ['Wide stance, toes out ~45°', 'Controlled descent — feel adductors working', 'Chest up and back flat throughout'], injury: 'Wide stance keeps forward knee travel minimal.', yt: 'https://www.youtube.com/results?search_query=dumbbell+sumo+deadlift+form+tutorial+wide+stance', ytEmbed: 'UVq1yHQFtrw' },
+      { name: 'Seated Calf Raise — 4 Sets', sets: '4', reps: '15–20', rest: '45s', muscles: 'Gastrocnemius · Soleus · Tibialis', cues: ['Extra set today — key rehab exercise', 'Full range every rep: heel drops, rises high', '2 sec up, 2 sec down — never rush', 'Add reps before adding weight'], injury: 'Progressive calf loading = Tibia/Fibula bone remodelling. Track this religiously every week.', yt: 'https://www.youtube.com/results?search_query=seated+calf+raise+dumbbell+how+to+form+tutorial', ytEmbed: '0W4Wy_PcFuE' },
+      { name: 'Bird Dog', sets: '3', reps: '10 each side', rest: '45s', muscles: 'Core · Glutes · Lower Back Stabilisers', cues: ['Hands and knees, spine neutral', 'Extend opposite arm and leg', 'Hold 2 sec at top before returning', 'Do NOT rotate hips — keep pelvis level'], injury: 'Builds deep core stability protecting both spine and leg recovery.', yt: 'https://www.youtube.com/results?search_query=bird+dog+exercise+how+to+core+stability+beginners', ytEmbed: 'wiFNA3sqjCA' },
+      { name: 'Plank', sets: '3', reps: '30 sec', rest: '45s', muscles: 'Core · Glutes · Shoulder Stabilisers', cues: ['Straight line head to heels', 'No hip sagging — brace hard', 'Breathe steadily — do not hold breath', 'Add 5 seconds each week'], injury: 'Low impact. Zero Tibia stress.', yt: 'https://www.youtube.com/results?search_query=perfect+plank+form+how+to+beginners+tutorial', ytEmbed: 'pSHjTRCQxIw' },
+    ],
+    cardioDetail: 'Stationary bike · LOW resistance · Seated ONLY. Slow, smooth pedalling only after a heavy leg session. Protect the Tibia on the way out.',
+    checklist: ['Ankle circles done thoroughly', 'RDL — added weight vs. Tuesday if form was clean', 'Hip thrust — 15 reps with 1-sec hold at top', '4 sets of calf raises completed and logged', 'No sharp Tibia pain during session'],
+  },
+  {
+    id: 'sun',
+    dayName: 'Sunday',
+    label: 'Day 7',
+    title: 'Rest Day',
+    subtitle: 'Full Rest · Optional Light Walk',
+    color: '#444',
+    emoji: '🌤️',
+    isRest: true,
+    restTips: [
+      { icon: '🚶', text: 'Optional 20–30 min walk at an easy pace. No running.' },
+      { icon: '🫀', text: 'Heart rate should not exceed 100 bpm during any activity today.' },
+      { icon: '🤸', text: 'Full body stretch: chest, hip flexors, hamstrings — 10 mins total.' },
+      { icon: '📋', text: 'Review your weights logged this week. Plan next week\'s progressive overload.' },
+      { icon: '🍽️', text: 'Keep protein intake at ~140g today. This is when muscles are built.' },
+      { icon: '💤', text: 'Prioritise 8+ hours sleep tonight before Monday\'s session.' },
+    ]
+  }
+];
+
+// ── State ──
+let activeDay = 0;
+let checkStates = JSON.parse(localStorage.getItem('checkStates') || '{}');
+
+// ── Day of week detection ──
+function getTodayIndex() {
+  const dow = new Date().getDay(); // 0=Sun, 1=Mon ... 6=Sat
+  const map = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4, 6: 5, 0: 6 };
+  return map[dow];
+}
+
+// ── Color CSS var per day ──
+function setDayColor(color) {
+  document.documentElement.style.setProperty('--day-color', color);
+}
+
+// ── Render tabs ──
+function renderTabs() {
+  const container = document.getElementById('dayTabs');
+  container.innerHTML = DAYS_DATA.map((d, i) => `
+    <button class="day-tab ${d.isRest ? 'rest-tab' : ''} ${i === activeDay ? 'active' : ''}" onclick="switchDay(${i})">
+      ${d.emoji} ${d.dayName}
+    </button>
+  `).join('');
+}
+
+// ── Render bottom nav ──
+function renderBottomNav() {
+  const nav = document.getElementById('bottomNav');
+  const workoutDays = DAYS_DATA.filter(d => !d.isRest);
+  const items = DAYS_DATA.map((d, i) => `
+    <button class="nav-item ${i === activeDay ? 'active' : ''}" onclick="switchDay(${i})">
+      <div class="nav-dot"></div>
+      <div class="nav-label">${d.dayName.slice(0,3)}</div>
+    </button>
+  `).join('');
+  nav.innerHTML = items;
+}
+
+// ── Build exercise card ──
+function buildExercise(ex, idx, dayId) {
+  const checkKey = `${dayId}-ex-${idx}`;
+  const done = checkStates[checkKey];
+  return `
+  <div class="exercise-card ${done ? 'done' : ''}" id="exc-${dayId}-${idx}">
+    <div class="exercise-header" onclick="toggleExercise('${dayId}', ${idx})">
+      <div class="ex-num">${idx + 1}</div>
+      <div class="ex-info">
+        <div class="ex-name">${ex.name}</div>
+        <div class="ex-tags">
+          <span class="tag tag-sets">${ex.sets} sets</span>
+          <span class="tag tag-reps">${ex.reps} reps</span>
+          <span class="tag tag-rest">Rest ${ex.rest}</span>
+        </div>
+      </div>
+      <div class="ex-chevron">▼</div>
+    </div>
+    <div class="exercise-body">
+      <div class="ex-muscles">💪 <b>Muscles:</b> ${ex.muscles}</div>
+      <div class="ex-cues">
+        ${ex.cues.map(c => `<div class="cue">${c}</div>`).join('')}
+        ${ex.injury ? `<div class="cue injury">${ex.injury}</div>` : ''}
+      </div>
+      <div class="video-container" id="vid-${dayId}-${idx}">
+        <div class="video-placeholder" onclick="loadVideo('${dayId}', ${idx}, '${ex.ytEmbed}', '${encodeURIComponent(ex.name)}')">
+          <div class="play-icon">▶</div>
+          <div class="vid-title">${ex.name}</div>
+          <div class="vid-label">Tap to load tutorial video</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Build warmup item ──
+function buildWarmup(item, idx) {
+  return `
+  <div class="warmup-item">
+    <div class="warmup-num">${idx + 1}</div>
+    <div class="warmup-info">
+      <div class="warmup-name">${item.name}</div>
+      <div class="warmup-meta"><b>${item.duration}</b> · ${item.purpose}</div>
+      <a href="${item.yt}" target="_blank" class="vid-btn">▶ Watch Tutorial</a>
+    </div>
+  </div>`;
+}
+
+// ── Build checklist ──
+function buildChecklist(items, dayId) {
+  return items.map((item, i) => {
+    const key = `${dayId}-check-${i}`;
+    const done = checkStates[key];
+    return `
+    <div class="check-item ${done ? 'done' : ''}" onclick="toggleCheck('${key}', this)">
+      <div class="check-box">${done ? '✓' : ''}</div>
+      <div class="check-label">${item}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Build full day view ──
+function buildDayView(day, i) {
+  if (day.isRest) {
+    return `
+    <div class="day-view" id="day-${i}">
+      <div class="rest-hero">
+        <div class="rest-emoji">${day.emoji}</div>
+        <div class="rest-title">${day.title}</div>
+        <div class="rest-sub">${day.dayName} — ${day.subtitle}<br>This is when your body actually grows. Protect it.</div>
+        <div class="rest-tips">
+          ${day.restTips.map(t => `
+            <div class="rest-tip">
+              <span class="tip-icon">${t.icon}</span>
+              <span>${t.text}</span>
+            </div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  const completedChecks = day.checklist.filter((_, ci) => checkStates[`${day.id}-check-${ci}`]).length;
+  const progress = Math.round((completedChecks / day.checklist.length) * 100);
+
+  return `
+  <div class="day-view" id="day-${i}">
+    <div class="day-hero" data-label="${day.title.split(' ')[0].toUpperCase()}">
+      <div class="day-hero-day">${day.label} · ${day.dayName}</div>
+      <div class="day-hero-title">${day.title}</div>
+      <div class="day-hero-sub">${day.subtitle}</div>
+      <div class="stats-row">
+        <div class="stat-pill">⏱ <span>${day.duration}</span></div>
+        <div class="stat-pill">🚴 <span>${day.cardio}</span></div>
+        <div class="stat-pill">✅ <span>${completedChecks}/${day.checklist.length}</span> done</div>
+      </div>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" style="width: ${progress}%"></div>
+    </div>
+
+    <div class="injury-banner">
+      <strong>⚠ Injury Note</strong>
+      ${day.injury}
+    </div>
+
+    <div class="section" id="sec-warmup-${i}">
+      <div class="section-header" onclick="toggleSection('sec-warmup-${i}')">
+        <div class="section-header-left">
+          <div class="section-icon" style="background:#0d3d38">🔥</div>
+          <div class="section-title">Warm-Up <span class="section-count">${day.warmup.length} exercises · 10 mins</span></div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="section-body">
+        ${day.warmup.map((w, wi) => buildWarmup(w, wi)).join('')}
+      </div>
+    </div>
+
+    <div class="section" id="sec-main-${i}">
+      <div class="section-header" onclick="toggleSection('sec-main-${i}')">
+        <div class="section-header-left">
+          <div class="section-icon" style="background:#1a1040">💪</div>
+          <div class="section-title">Main Workout <span class="section-count">${day.exercises.length} exercises · 40 mins</span></div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="section-body">
+        ${day.exercises.map((ex, ei) => buildExercise(ex, ei, day.id)).join('')}
+      </div>
+    </div>
+
+    <div class="section" id="sec-cardio-${i}">
+      <div class="section-header" onclick="toggleSection('sec-cardio-${i}')">
+        <div class="section-header-left">
+          <div class="section-icon" style="background:#1a0a1a">🚴</div>
+          <div class="section-title">Cardio Finisher <span class="section-count">10 mins</span></div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="section-body">
+        <div class="cardio-block">
+          <div class="cardio-icon">🚴</div>
+          <div class="cardio-info">
+            <div class="cardio-title">Stationary Bike</div>
+            <div class="cardio-detail">${day.cardioDetail}</div>
+            <div class="hr-badge">❤️ Target: 117–137 bpm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="sec-check-${i}">
+      <div class="section-header" onclick="toggleSection('sec-check-${i}')">
+        <div class="section-header-left">
+          <div class="section-icon" style="background:#0f2010">✅</div>
+          <div class="section-title">Session Checklist <span class="section-count">${completedChecks}/${day.checklist.length} done</span></div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="section-body">
+        <div class="checklist" id="checklist-${i}">
+          ${buildChecklist(day.checklist, day.id)}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ── Interactions ──
+function switchDay(i) {
+  activeDay = i;
+  const day = DAYS_DATA[i];
+  setDayColor(day.color);
+
+  document.querySelectorAll('.day-view').forEach(v => v.classList.remove('active'));
+  document.getElementById(`day-${i}`).classList.add('active');
+
+  document.querySelectorAll('.day-tab').forEach((t, ti) => t.classList.toggle('active', ti === i));
+  document.querySelectorAll('.nav-item').forEach((n, ni) => n.classList.toggle('active', ni === i));
+
+  const badge = document.getElementById('todayBadge');
+  badge.textContent = i === getTodayIndex() ? '● Today' : day.dayName;
+  badge.style.background = day.color;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleSection(id) {
+  document.getElementById(id).classList.toggle('collapsed');
+}
+
+function toggleExercise(dayId, idx) {
+  const card = document.getElementById(`exc-${dayId}-${idx}`);
+  card.classList.toggle('open');
+}
+
+function loadVideo(dayId, idx, ytId, title) {
+  const container = document.getElementById(`vid-${dayId}-${idx}`);
+  const decodedTitle = decodeURIComponent(title);
+  if (ytId && ytId !== 'undefined') {
+    container.innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?rel=0&modestbranding=1" allowfullscreen allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>`;
+  } else {
+    window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(decodedTitle + ' how to form tutorial')}`, '_blank');
+  }
+}
+
+function toggleCheck(key, el) {
+  const isDone = !checkStates[key];
+  checkStates[key] = isDone;
+  localStorage.setItem('checkStates', JSON.stringify(checkStates));
+  el.classList.toggle('done', isDone);
+  el.querySelector('.check-box').textContent = isDone ? '✓' : '';
+  // Update progress bar
+  updateProgress();
+}
+
+function updateProgress() {
+  const day = DAYS_DATA[activeDay];
+  if (day.isRest) return;
+  const completed = day.checklist.filter((_, ci) => checkStates[`${day.id}-check-${ci}`]).length;
+  const pct = Math.round((completed / day.checklist.length) * 100);
+  const bar = document.querySelector('.progress-bar-fill');
+  if (bar) bar.style.width = pct + '%';
+  // Update stat pill
+  const pills = document.querySelectorAll('.stat-pill');
+  pills.forEach(p => { if (p.textContent.includes('done')) p.querySelector('span').textContent = `${completed}/${day.checklist.length}`; });
+}
+
+// ── Init ──
+function init() {
+  const content = document.getElementById('mainContent');
+  content.innerHTML = DAYS_DATA.map((d, i) => buildDayView(d, i)).join('');
+  renderTabs();
+  renderBottomNav();
+
+  const todayIdx = getTodayIndex();
+  switchDay(todayIdx);
+}
+
+init();
+</script>
+</body>
+</html>
