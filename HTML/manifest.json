@@ -1,0 +1,24 @@
+{
+  "name": "My Training Plan",
+  "short_name": "Training Plan",
+  "description": "Upper-Lower Workout Program with Injury Tracking",
+  "start_url": "Upper-Lower Training Plan.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
