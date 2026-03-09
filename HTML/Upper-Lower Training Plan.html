@@ -458,7 +458,6 @@
     font-size: 28px;
     flex-shrink: 0;
   }
-  .cardio-info {}
   .cardio-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 16px;
@@ -575,6 +574,7 @@
     transition: background 0.15s;
     border: none;
     background: transparent;
+    appearance: none;
     -webkit-appearance: none;
   }
   .nav-item:active { background: var(--bg3); }
@@ -655,7 +655,7 @@ const DAYS_DATA = [
     ],
     exercises: [
       { name: 'Barbell Bent-Over Row', sets: '3', reps: '8–10', rest: '90s', muscles: 'Lats · Rhomboids · Traps · Rear Delts · Biceps', cues: ['Hinge at hips to ~45°, chest proud', 'Pull bar to lower ribs — not upper chest', 'Squeeze shoulder blades hard at top', '3 sec lowering, explode up'], injury: 'Soft knees throughout. If lower back rounds — reduce weight.', yt: 'https://www.youtube.com/results?search_query=barbell+bent+over+row+proper+form+tutorial+beginner', ytEmbed: 'FWJR5Ve8bnQ' },
-      { name: 'Dumbbell Floor Press', sets: '3', reps: '10–12', rest: '60s', muscles: 'Chest · Anterior Delts · Triceps', cues: ['Lie flat, knees bent at 45°', 'Elbows at 45° — not flared wide', 'Pause 1 sec when elbows touch floor', 'Press explosively, lower slowly (3s)'], injury: 'Safer than bench press for beginners — the floor limits shoulder range.', yt: 'https://www.youtube.com/results?search_query=dumbbell+floor+press+how+to+chest+tutorial', ytEmbed: '' },
+      { name: 'Dumbbell Floor Press', sets: '3', reps: '10–12', rest: '60s', muscles: 'Chest · Anterior Delts · Triceps', cues: ['Lie flat, knees bent at 45°', 'Elbows at 45° — not flared wide', 'Pause 1 sec when elbows touch floor', 'Press explosively, lower slowly (3s)'], injury: 'Safer than bench press for beginners — the floor limits shoulder range.', yt: 'https://www.youtube.com/results?search_query=dumbbell+floor+press+how+to+chest+tutorial', ytEmbed: 'VmB1G1K7v94' },
       { name: 'Seated DB Overhead Press', sets: '3', reps: '10', rest: '60s', muscles: 'Medial Delts · Anterior Delts · Triceps · Upper Traps', cues: ['Sit completely upright — no lumbar arch', 'Press directly overhead', 'Lower to ear level, 3 sec down', 'Chest proud every rep — this fights kyphosis'], injury: 'Seated upright position actively corrects your posture while you train.', yt: 'https://www.youtube.com/results?search_query=seated+dumbbell+overhead+press+form+tutorial', ytEmbed: 'qEwKCR5JCog' },
       { name: 'Single-Arm DB Row', sets: '3', reps: '10 each', rest: '45s', muscles: 'Lats · Rhomboids · Rear Delts · Biceps', cues: ['Support hand and knee on bench', 'Keep spine neutral — no rotation', 'Pull elbow back past your hip', 'Full stretch at the bottom'], injury: 'Keep supporting knee firmly planted. Stop if lower back engages.', yt: 'https://www.youtube.com/results?search_query=single+arm+dumbbell+row+form+tutorial+beginners', ytEmbed: 'pYcpY20QaE8' },
       { name: 'Rear Delt Flye (Prone on Bench)', sets: '3', reps: '15', rest: '45s', muscles: 'Rear Deltoids · Rhomboids · Mid-Traps', cues: ['Lie face-down, arms hanging below bench', 'Raise out to sides in a T shape', 'Maximum squeeze at top — hold 1 sec', 'Use very light weight. Quality over load.'], injury: 'PRIORITY POSTURE EXERCISE. Never skip this. 2–5 kg is fine.', yt: 'https://www.youtube.com/results?search_query=prone+rear+delt+flye+bench+posture+kyphosis', ytEmbed: 'EA7u4Q_8HQ0' },
